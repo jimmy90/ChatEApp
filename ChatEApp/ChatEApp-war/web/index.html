@@ -9,8 +9,106 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="style.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     </head>
     <body>
         <div>TODO write content</div>
+
+        <div class="container">
+        	<div class="row">
+			  <div class="jumbotron col-md-6 col-md-offset-3">
+			  		<form class="form-horizontal" id="home">
+						<fieldset>
+
+						<!-- Form Name -->
+						<legend>Accueil</legend>
+
+						<!-- Text input-->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="pseudonyme">Pseudonyme</label>  
+						  <div class="col-md-6">
+						  <input id="pseudonyme" name="pseudonyme" type="text" placeholder="Pseudo" class="form-control input-md" required="">
+						    
+						  </div>
+						</div>
+
+						<!-- Select Basic -->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="Salle">Salle :</label>
+						  <div class="col-md-6">
+						    <select id="Salle" name="Salle" class="form-control">
+						      <option value="0" disabled selected>Choisissez</option>
+						      <option value="1">Salle 1</option>
+						      <option value="2">Salle 2</option>
+						      <option value="3">Salle 3</option>
+						      <option value="4">Salle 4</option>
+						      <option value="5">Salle 5</option>
+						    </select>
+						  </div>
+						</div>
+
+						<!-- Button -->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="entrer"></label>
+						  <div class="col-md-4">
+						    <button id="entrer" name="entrer" class="btn btn-primary">Entrer</button>
+						  </div>
+						</div>
+
+						</fieldset>
+					</form>
+					<form class="form-horizontal" id="salle">
+						<fieldset>
+
+						<!-- Form Name -->
+						<legend>Pseudonyme@salleX</legend>
+
+						<!-- Text input-->
+						<div class="col-md-offset-1 col-md-10" style="border:1px solid black;" id="left">
+						 	<p>Message de la discussion </p><p>ttt</p><p>ttt</p><p>ttt</p><p>ttt</p><p>ttt</p><p>ttt</p><p>ttt</p><p>ttt</p><p>ttt</p>
+						</div>
+						<div class="form-group">
+						  <div class="col-md-10 col-md-offset-1" id="div-message">
+						  	<input id="message" name="message" type="text" placeholder="Votre message" class="form-control input-md" required="">   
+						  </div>
+						</div>
+						<div class="form-group">
+						  <div class="col-md-10 col-md-offset-1" id="div-message">
+						    <button id="send_message" name="send_message" class="btn btn-primary btn-block">Envoyer le message</button>
+						    <a id="sortir" name="sortir"  href="#" class="btn btn-danger btn-block" role="button">Sortir</a>
+						  </div>
+						</div>
+
+						</fieldset>
+					</form>
+
+			  </div>
+			  <div class="col-md-3"></div>
+			</div>
+        </div>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    	<script type="text/javascript">
+    		$(document).ready(function(){
+    			$("#salle").hide();
+			    $("#entrer").click(function(){
+				    $("#home").slideUp( "slow" );
+				    $("#salle").slideDown( "slow" );
+    			});
+    			$("#sortir").click(function(){
+			    $("#salle").slideUp( "slow" );
+			    $("#home").slideDown( "slow" );
+    			});
+			});
+    	</script>
     </body>
 </html>

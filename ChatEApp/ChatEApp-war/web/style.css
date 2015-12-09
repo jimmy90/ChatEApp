@@ -1,0 +1,24 @@
+@media (min-width: 768px){
+  #left {
+    overflow: scroll; 
+    height: 200px;
+  }
+  
+  #right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    overflow-y: scroll;
+    width: 25%;
+  }
+}
+
+.jumbotron p {
+    font-size: 12px!important;
+}
+
+#div-message {
+    margin-top: 2%!important;
+}
+
