@@ -18,25 +18,24 @@ import javax.websocket.EndpointConfig;
  */
 public class ChatMessageEncoder implements Encoder.Text<ChatMessage>  {
 
-     public String encode(ChatMessage message) throws EncodeException {
-
-    JsonObject jsonObject;
-      jsonObject = Json.createObjectBuilder()
+    @Override
+    public String encode(ChatMessage message) throws EncodeException {
+        JsonObject jsonObject;
+        jsonObject = Json.createObjectBuilder()
               .add("Message", message.getMessage())
               .add("Emetteur", message.getEmetteur())
-              .add("Date", message.getRecu().toString()).build();
-    return jsonObject.toString();
+              .add("Date", message.getRecu()).build();
+        return jsonObject.toString();
+    }
 
-  }
-
-  public void init(EndpointConfig ec) {
-    System.out.println("MessageEncoder - init method called");
-  }
-
+    @Override
+    public void init(EndpointConfig config) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
     public void destroy() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+   
 }

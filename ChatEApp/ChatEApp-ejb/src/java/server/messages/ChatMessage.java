@@ -1,8 +1,5 @@
 package server.messages;
 
-
-import java.util.Date;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,7 +12,7 @@ import java.util.Date;
  */
 public class ChatMessage {
     
-    protected ChatMessage(String message, String emetteur, Date recu) {
+    protected ChatMessage(String message, String emetteur, String recu) {
 		super();
 		this.message = message;
 		this.emetteur = emetteur;
@@ -23,7 +20,12 @@ public class ChatMessage {
     }
     private String message;
     private String emetteur;
-    private Date recu;
+    private String recu;
+
+    public ChatMessage() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     public String getMessage() {
             return message;
     }
@@ -36,10 +38,10 @@ public class ChatMessage {
     public void setEmetteur(String emetteur) {
             this.emetteur = emetteur;
     }
-    public Date getRecu() {
+    public String getRecu() {
             return recu;
     }
-    public void setRecu(Date recu) {
+    public void setRecu(String recu) {
             this.recu = recu;
     }
 
