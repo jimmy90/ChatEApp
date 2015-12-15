@@ -39,15 +39,15 @@
         
        
  
-	function leaveRoom() {
+	function quitterSalle() {
 		wsocket.close();
 		$chatWindow.empty();
-		$('.chat-wrapper').hide();
-		$('.chat-signin').show();
+		$('.home').hide();
+		$('.salle').show();
 		$nickName.focus();
-	}
+	
  
-	$(document).ready(function() {
+	/*(document).ready(function() {
 		$nickName = $('#nickname');
 		$message = $('#message');
 		$chatWindow = $('#response');
@@ -67,7 +67,8 @@
 			sendMessage()
 		});
  
-		$('#leave-room').click(function(){
-			leaveRoom();
+		$('#sortir').click(function(){
+			quitterSalle();
 		});
-	});
+	});*/
+    }
