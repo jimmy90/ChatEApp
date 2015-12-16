@@ -7,68 +7,66 @@
 
 	var wsocket;
 	var serviceLocation = "ws://0.0.0.0:8080/hascode/chat/";
-	var $nickName;
+	var $pseudo;
 	var $message;
 	var $chatWindow;
-	var room = '';
- 
-    //
-    function onMessageReceived(evt) {
-		//var msg = eval('(' + evt.data + ')');
-		var msg = JSON.parse(evt.data); // native API
-		var $messageLine = $('<tr><td class="received">' + msg.recu
-				+ '</td><td class="user label label-info">' + msg.emetteur
-				+ '</td><td class="message badge">' + msg.message
-				+ '</td></tr>');
-		$chatWindow.append($messageLine);
-	}
+	var $room = 0;
         
-         // connection
-	function connectToChatserver() {
-		room = $('#Salle option:selected').val();
-		wsocket = new WebSocket(serviceLocation + room);
-		wsocket.onmessage = onMessageReceived;
-	}
-        
-	function sendMessage() {
-		var msg = '{"message":"' + $message.val() + '", "sender":"'
-				+ $nickName.val() + '", "received":""}';
-		wsocket.send(msg);
-		$message.val('').focus();
-	}
-        
-       
- 
-	function quitterSalle() {
-		wsocket.close();
-		$chatWindow.empty();
-		$('.home').hide();
-		$('.salle').show();
-		$nickName.focus();
-	
- 
-	/*(document).ready(function() {
-		$nickName = $('#nickname');
-		$message = $('#message');
-		$chatWindow = $('#response');
-		$('.chat-wrapper').hide();
-		$nickName.focus();
- 
-		$('#enterRoom').click(function(evt) {
+    $(document).ready(function() {
+                $pseudo=$('#pseudonyme').val();
+                $room=0;
+		$("#salle").hide();
+		$('#entrer').click(function(evt) {
 			evt.preventDefault();
-			connectToChatserver();
-			$('.chat-wrapper h2').text('Chat # '+$nickName.val() + "@" + room);
-			$('.chat-signin').hide();
-			$('.chat-wrapper').show();
-			$message.focus();
+                        $pseudo = $('#pseudonyme').val();
+                        $room = $('#room').val();
+                        if ($pseudo!=="" && $room!==null){
+                            connectToChatserver();
+                            $('.infoRoomUser').text('Chat : '+$pseudo + "@" + $room);
+                            $("#home").slideUp("slow");
+                            $("#salle").slideDown("slow");
+                            $message.focus();
+                        }
 		});
 		$('#do-chat').submit(function(evt) {
 			evt.preventDefault();
-			sendMessage()
+			sendMessage();
 		});
  
 		$('#sortir').click(function(){
 			quitterSalle();
 		});
-	});*/
+    });
+ 
+    //
+    function onMessageReceived(evt) {
+		//var msg = eval('(' + evt.data + ')');
+	var msg = JSON.parse(evt.data); // native API
+	var $messageLine = $('<tr><td class="received">' + msg.recu
+				+ '</td><td class="user label label-info">' + msg.emetteur
+				+ '</td><td class="message badge">' + msg.message
+				+ '</td></tr>');
+	$chatWindow.append($messageLine);
+    }
+        
+         // connection
+    function connectToChatserver() {
+		room = $('#Salle option:selected').val();
+		wsocket = new WebSocket(serviceLocation + room);
+		wsocket.onmessage = onMessageReceived;
+    }
+        
+    function sendMessage() {
+	var msg = '{"message":"' + $message.val() + '", "sender":"'
+			+ $pseudo.val() + '", "received":""}';
+	wsocket.send(msg);
+	$message.val('').focus();
+    }
+        
+    function quitterSalle() {
+	wsocket.close();
+	$chatWindow.empty();
+	$('#salle').hide();
+	$('#home').show();
+	$pseudo.focus();
     }

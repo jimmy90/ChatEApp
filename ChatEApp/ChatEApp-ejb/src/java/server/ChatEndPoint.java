@@ -26,7 +26,7 @@ import server.messages.ChatMessage;
  */
 
 @ServerEndpoint(
-  value = "/room/{room-id}", 
+  value = "/{room-id}", 
   encoders = { ChatMessageEncoder.class }, 
   decoders = { ChatMessageDecoder.class }
 )
